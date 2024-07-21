@@ -1,0 +1,30 @@
+<h1>Books</h1>
+
+<% if @books.empty? %>
+  <p>投稿がありません</p>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: center;">Title</th>
+        <th style="text-align: center;">Body</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.body %></td>
+            <%= form_with model: Book do |f| %>
+              <td><%= f.submit 'Show' %><td>
+              <td><%= f.submit 'Edit' %><td>
+              <td><%= f.submit 'Destroy' %><td>
+            <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+     
+<% end %>
+
+<%= render 'books/new' %>
