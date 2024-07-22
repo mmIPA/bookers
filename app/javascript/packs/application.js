@@ -11,3 +11,6 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// For Sprockets (default asset pipeline)
+//= require rails-ujs

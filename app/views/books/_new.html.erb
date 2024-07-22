@@ -1,3 +1,12 @@
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h1>New book</h1>
 
 <%= form_with model: @book do |f| %>
@@ -8,5 +17,11 @@
   <%= f.text_area :body %>
 	
   <%= f.submit 'Create Book' %>
+
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert].join("<br>") %>
+  </div>
+<% end %>
 
 <% end %>
