@@ -1,27 +1,23 @@
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
 <h1>New book</h1>
 
-<%= form_with model: @book do |f| %>
+<% if book.errors.any? %>
+   <div class="error-message">
+    <h2>error!!!</h2>
+    <ul>
+      <% book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: book do |f| %>
  <h4>Title</h4>
   <%= f.text_field :title %>
 	
   <h4>Body</h4>
   <%= f.text_area :body %>
 	
-  <%= f.submit 'Create Book' %>
-
-<% if flash[:alert] %>
-  <div class="alert alert-danger">
-    <%= flash[:alert].join("<br>") %>
-  </div>
-<% end %>
+  <h4><%= f.submit 'Create Book' %></h4>
 
 <% end %>
