@@ -6,7 +6,7 @@ def new
 end
 
 def create
-  @book = Book.new(list_params)
+  @book = Book.new(book_params)
   if @book.save
     flash[:notice] = "Book was successfully created."
     redirect_to book_path(@book)
@@ -29,6 +29,17 @@ def edit
   @book = Book.find(params[:id])
 end
 
+def update
+  @book = Book.find(params[:id])
+  if @book.update(book_params)
+    flash[:notice] = "Book was successfully updated."
+    redirect_to book_path(@book)
+  else
+    flash[:alert] = @book.errors.full_messages
+    render :edit
+  end
+end
+
 def destroy
   book = Book.find(params[:id])
   book.destroy
@@ -36,7 +47,7 @@ def destroy
 end
 
   private
-  def list_params
+  def book_params
     params.require(:book).permit(:title, :body)
   end
 

@@ -1,5 +1,16 @@
 <h1>Editing Book</h1>
 
+<% if @book.errors.any? %>
+   <div class="error-message">
+    <h2>error!!!</h2>
+    <ul class>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with model: @book do |f| %>
 
   <h4>Title</h4>
@@ -12,5 +23,6 @@
   
 <% end %>
 
-<%= link_to 'show',  book_path(@book) %> |
-<%= link_to 'Back',  "/books" %>
+<p class="buttons">
+  <%= link_to 'show',  book_path(@book) %> |<%= link_to 'Back',  "/books" %>
+</p>
